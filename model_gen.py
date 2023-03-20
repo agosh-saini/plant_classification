@@ -31,7 +31,7 @@ test_data_transform = torchvision.transforms.Compose([
 
 # --- creating splits for training and testing --- #
 train_data = torchvision.datasets.ImageFolder(path + '/train', transform=train_data_transform)
-test_data = torchvision.datasets.ImageFolder(path + '/train', transform=test_data_transform)
+test_data = torchvision.datasets.ImageFolder(path + '/test', transform=test_data_transform)
 
 # --- dataloader information --- #
 batch_size = 32
@@ -62,7 +62,7 @@ for epoch in range(epochs):
         running_loss += loss.item() * inputs.size(0)
 
     epoch_loss = running_loss / len(train_data)
-    print('Epoch: ' + str(epoch + 1) + 'Loss: ' + str(epoch_loss))
+    print('Epoch ' + str(epoch + 1) + ' of ' + str(epochs) + ' Loss: ' + str(epoch_loss))
 
 # --- testing the model --- #
 correct = 0
@@ -78,4 +78,7 @@ with torch.no_grad():
 accuracy = correct / total
 
 print("Accuracy: " + str(accuracy))
+
+# --- saving the model --- #
+torch.save(model.state_dict(), 'flower_classifier.pth')
 
