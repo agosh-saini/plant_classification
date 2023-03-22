@@ -1,6 +1,4 @@
 # ignore the following folders
-jpeg-192x192
 .idea
 .git
-
-
+kaggle.json
